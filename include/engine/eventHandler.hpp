@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "renderer.hpp"
+struct Renderer;
 
 struct EventHandler {
     sf::Event event;

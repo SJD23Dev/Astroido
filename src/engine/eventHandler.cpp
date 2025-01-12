@@ -1,4 +1,5 @@
 #include "engine/eventHandler.hpp"
+#include "engine/renderer.hpp"
 
 bool EventHandler::pollEvent(Renderer& renderer) {
     while (renderer.getWindow().pollEvent(event)) {

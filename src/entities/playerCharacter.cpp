@@ -2,7 +2,7 @@
 
 PlayerCharacter::PlayerCharacter() : orbitAngle(0.0f), velocity(0.0f, 0.0f), thrust(0) {
     shape.setRadius(10.f);
-    shape.setFillColor(sf::Color::Green);
+    shape.setFillColor(sf::Color(25, 191, 225));
     shape.setOrigin(shape.getRadius(), shape.getRadius());
     position = sf::Vector2f(500.0f, 500.0f);
     shape.setPosition(position);
@@ -63,9 +63,9 @@ void PlayerCharacter::move() {
 }
 
 void PlayerCharacter::updateThrustBars() {
-    float barSpacing = 5.0f; // Spacing between bars
+    float barSpacing = 4.0f; // Spacing between bars
     for (int i = 0; i < 5; ++i) {
-        thrustBars[i].setPosition(position.x - (2 * barSpacing) + (i * barSpacing), position.y + shape.getRadius() + 10);
+        thrustBars[i].setPosition(position.x - (2 * barSpacing) + (i * barSpacing), position.y + shape.getRadius() + 6);
         if (i < thrust) {
             if (i < 3) {
                 thrustBars[i].setFillColor(sf::Color(144, 233, 75, 180)); // Green for first three bars

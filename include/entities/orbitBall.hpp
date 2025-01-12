@@ -5,6 +5,8 @@
 
 struct OrbitBall : public sf::Drawable{
     sf::CircleShape shape;
+    sf::Vector2f currentPosition;
+    float currentOrbitAngle;
 
     OrbitBall();
     void update(const sf::Vector2f& playerPosition, float orbitAngle);

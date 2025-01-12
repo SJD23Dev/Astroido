@@ -3,6 +3,7 @@
 Renderer::Renderer() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Astroido") {
     window.setFramerateLimit(FPS);
     settings.antialiasingLevel = 8;
+    view = window.getDefaultView();
 }
 
 sf::RenderWindow& Renderer::getWindow() {
@@ -15,6 +16,11 @@ bool Renderer::isOpen() {
 
 void Renderer::update(World& world) {
     window.clear();
+    window.setView(view);
     world.render(window);
     window.display();
+}
+
+void Renderer::setView(const sf::View& newView) {
+    view = newView;
 }

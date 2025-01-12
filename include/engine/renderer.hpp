@@ -10,9 +10,11 @@ struct Renderer {
 
     sf::RenderWindow window;
     sf::ContextSettings settings;
+    sf::View view;
 
     Renderer();
     sf::RenderWindow& getWindow();
     bool isOpen();
     void update(World& world);
+    void setView(const sf::View& newView);
 };

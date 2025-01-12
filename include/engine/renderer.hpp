@@ -6,9 +6,10 @@
 struct Renderer {
     const int WINDOW_WIDTH = 1280;
     const int WINDOW_HEIGHT = 720;
-    const int FPS = 60;
+    const int FPS = 30;
 
     sf::RenderWindow window;
+    sf::ContextSettings settings;
 
     Renderer();
     sf::RenderWindow& getWindow();

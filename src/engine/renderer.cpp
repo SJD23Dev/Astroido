@@ -2,6 +2,7 @@
 
 Renderer::Renderer() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Astroido") {
     window.setFramerateLimit(FPS);
+    settings.antialiasingLevel = 8;
 }
 
 sf::RenderWindow& Renderer::getWindow() {

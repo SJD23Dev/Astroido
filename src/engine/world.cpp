@@ -118,8 +118,6 @@ void World::render(sf::RenderWindow& window) {
     for (auto& object: returnObjects) {
         window.draw(*object);
     }
-
-    window.draw(pc);
 }
 
 void World::addObject(sf::Drawable* object, sf::FloatRect rect) {

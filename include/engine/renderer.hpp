@@ -11,4 +11,6 @@ struct Renderer {
 
     Renderer();
     sf::RenderWindow& getWindow();
+    bool isOpen();
+    void update();
 };

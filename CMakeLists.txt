@@ -10,7 +10,8 @@ find_package(SFML 2.5 COMPONENTS
 add_executable(${PROJECT_NAME} 
                src/main.cpp
                src/engine/renderer.cpp
-               src/engine/game.cpp)
+               src/engine/game.cpp
+               src/engine/eventHandler.cpp)
 
 target_include_directories(${PROJECT_NAME} 
                            PRIVATE 

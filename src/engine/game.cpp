@@ -1,5 +1,10 @@
 #include "engine/game.hpp"
 
-Game::Game() : renderer() {}
+Game::Game() {}
 
-bool Game::run() {}
+void Game::run() {
+    while (renderer.isOpen()) {
+        eventHandler.pollEvent(renderer);
+        renderer.update();
+    }
+}

@@ -7,3 +7,12 @@ Renderer::Renderer() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Astro
 sf::RenderWindow& Renderer::getWindow() {
     return window;
 }
+
+bool Renderer::isOpen() {
+    return window.isOpen();
+}
+
+void Renderer::update() {
+    window.clear();
+    window.display();
+}

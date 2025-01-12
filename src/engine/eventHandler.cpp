@@ -28,9 +28,9 @@ void EventHandler::handleEvent(Renderer& renderer, World& world) {
 
 void EventHandler::handleKeyPress(World& world) {
     PlayerCharacter& player = world.getPlayerCharacter();
-    if (event.key.code == sf::Keyboard::Space && player.thrust < 5) {
+    if (event.key.code == sf::Keyboard::W && player.thrust < 5) {
         player.thrust++;
-    } else if (event.key.code == sf::Keyboard::LShift && player.thrust > 0) {
+    } else if (event.key.code == sf::Keyboard::S && player.thrust > 0) {
         player.thrust--;
     }
 }

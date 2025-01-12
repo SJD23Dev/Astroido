@@ -12,7 +12,8 @@ bool Renderer::isOpen() {
     return window.isOpen();
 }
 
-void Renderer::update() {
+void Renderer::update(World& world) {
     window.clear();
+    world.render(window);
     window.display();
 }

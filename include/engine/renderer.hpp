@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "world.hpp"
 
 struct Renderer {
     const int WINDOW_WIDTH = 1280;
@@ -12,5 +13,5 @@ struct Renderer {
     Renderer();
     sf::RenderWindow& getWindow();
     bool isOpen();
-    void update();
+    void update(World& world);
 };

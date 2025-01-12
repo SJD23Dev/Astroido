@@ -11,7 +11,9 @@ add_executable(${PROJECT_NAME}
                src/main.cpp
                src/engine/renderer.cpp
                src/engine/game.cpp
-               src/engine/eventHandler.cpp)
+               src/engine/eventHandler.cpp
+               src/engine/world.cpp
+               src/entities/playerCharacter.cpp)
 
 target_include_directories(${PROJECT_NAME} 
                            PRIVATE 

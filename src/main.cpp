@@ -1,5 +1,6 @@
-#include <iostream>
+#include "engine/game.hpp"
 
-int main(int, char**){
-    std::cout << "Hello, from Astroido!\n";
+int main(int argc, char** argv) {
+    Game game;
+    game.run();
 }

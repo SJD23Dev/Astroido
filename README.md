@@ -12,8 +12,4 @@
 
 ## What is this?
 
-Astroido is a small game developed in C++ within a Unix environment.
-
-<br>
-
-# ! This README is a WIP !
+Welcome to my repository for Astroido, a small game develeoped in C++ within a UNIX environment. This project is very much a work-in-progress, along with this README.

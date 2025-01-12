@@ -18,6 +18,8 @@ void EventHandler::handleEvent(Renderer& renderer, World& world) {
         case sf::Event::KeyPressed:
             if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::D) {
                 handleOrbitAngle(world);
+            } else if (event.key.code == sf::Keyboard::Space) {
+                handleMovement(world);
             }
             break;
         default:
@@ -37,7 +39,7 @@ void EventHandler::handleOrbitAngle(World& world) {
 
 void EventHandler::handleMovement(World& world) {
     PlayerCharacter& player = world.getPlayerCharacter();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         player.velocity = sf::Vector2f(std::cos(player.orbitAngle), std::sin(player.orbitAngle)) * 2.0f;
     }
 }

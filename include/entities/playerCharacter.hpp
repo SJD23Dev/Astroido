@@ -12,9 +12,13 @@ struct PlayerCharacter : public sf::Drawable {
     OrbitBall orbitBall;
     float orbitAngle;
 
+    sf::Font font;
+    sf::Text thrustBars[5];
+
     PlayerCharacter();
     void update();
     void move();
+    void updateThrustBars();
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

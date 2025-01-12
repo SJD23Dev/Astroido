@@ -16,13 +16,26 @@ void EventHandler::handleEvent(Renderer& renderer, World& world) {
             renderer.getWindow().close();
             break;
         case sf::Event::KeyPressed:
+            handleKeyPress(world);
+            break;
         case sf::Event::KeyReleased:
-            handleOrbitAngle(world);
-            handleMovement(world);
+            handleKeyRelease(world);
             break;
         default:
             break;
     }
+}
+
+void EventHandler::handleKeyPress(World& world) {
+    PlayerCharacter& player = world.getPlayerCharacter();
+    if (event.key.code == sf::Keyboard::Space && player.thrust < 5) {
+        player.thrust++;
+    } else if (event.key.code == sf::Keyboard::LShift && player.thrust > 0) {
+        player.thrust--;
+    }
+}
+
+void EventHandler::handleKeyRelease(World& world) {
 }
 
 void EventHandler::handleOrbitAngle(World& world) {
@@ -32,14 +45,5 @@ void EventHandler::handleOrbitAngle(World& world) {
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         player.orbitAngle += 0.15f;
-    }
-}
-
-void EventHandler::handleMovement(World& world) {
-    PlayerCharacter& player = world.getPlayerCharacter();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player.thrust < 5) {
-        player.thrust++;
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && player.thrust > 0) {
-        player.thrust--;
     }
 }

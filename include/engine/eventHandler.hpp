@@ -8,7 +8,7 @@ struct EventHandler {
     sf::Event event;
     bool pollEvent(Renderer& renderer, World& world);
     void handleEvent(Renderer& renderer, World& world);
-
+    void handleKeyPress(World& world);
+    void handleKeyRelease(World& world);
     void handleOrbitAngle(World& world);
-    void handleMovement(World& world);
 };

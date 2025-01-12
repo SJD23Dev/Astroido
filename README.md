@@ -12,4 +12,8 @@
 
 ## What is this?
 
-Welcome to my repository for Astroido, a small game develeoped in C++ within a UNIX environment. This project is very much a work-in-progress, along with this README.
+Welcome to my repository for Astroido, a small space-themed game develeoped in C++ using the SFML 2.5 library. The development environment mostly consists of Visual Studio Code on Ubuntu. This project (along with this README) is a work-in-progress, with more information to be added in the future!
+
+## Contact me
+
+Email: [SJD23Dev@proton.me](mailto:SJD23Dev@proton.me)

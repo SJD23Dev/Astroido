@@ -4,7 +4,8 @@
 #include <SFML/Graphics.hpp>
 
 struct OrbitBall : public sf::Drawable{
-    sf::CircleShape shape;
+    sf::Text text;
+    sf::Font font;
     sf::Vector2f currentPosition;
     float currentOrbitAngle;
 

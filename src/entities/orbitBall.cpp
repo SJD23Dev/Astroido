@@ -1,11 +1,14 @@
 #include "entities/orbitBall.hpp"
 
 OrbitBall::OrbitBall() {
-    shape.setRadius(5.0f);
-    shape.setFillColor(sf::Color::White);
-    shape.setOrigin(shape.getRadius(), shape.getRadius());
     currentPosition = sf::Vector2f(0.0f, 0.0f);
     currentOrbitAngle = 0.0f;
+    font.loadFromFile("../assets/fonts/Cocogoose-Pro-Light-trial.ttf");
+    text.setFont(font);
+    text.setCharacterSize(12);
+    text.setFillColor(sf::Color::White);
+    text.setString(">");
+    text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 }
 
 void OrbitBall::update(const sf::Vector2f& playerPosition, float targetOrbitAngle) {
@@ -19,9 +22,10 @@ void OrbitBall::update(const sf::Vector2f& playerPosition, float targetOrbitAngl
         playerPosition.y + radius * std::sin(currentOrbitAngle)
     );
 
-    shape.setPosition(currentPosition);
+    text.setPosition(currentPosition);
+    text.setRotation(currentOrbitAngle * 180 / M_PI);
 }
 
 void OrbitBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(shape, states);
+    target.draw(text, states);
 }

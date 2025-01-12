@@ -125,3 +125,7 @@ void World::render(sf::RenderWindow& window) {
 void World::addObject(sf::Drawable* object, sf::FloatRect rect) {
     coordinateQuadtree.insert(object, rect);
 }
+
+PlayerCharacter& World::getPlayerCharacter() {
+    return pc;
+}

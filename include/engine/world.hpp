@@ -34,4 +34,6 @@ struct World {
     void render(sf::RenderWindow& window);
     void addObject(sf::Drawable* object, sf::FloatRect rect);
     //void removeObject(sf::Drawable* object, sf::FloatRect rect);
+    
+    PlayerCharacter& getPlayerCharacter();
 };

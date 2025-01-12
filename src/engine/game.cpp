@@ -7,7 +7,8 @@ Game::Game() : renderer(),
 
 void Game::run() {
     while (renderer.isOpen()) {
-        eventHandler.pollEvent(renderer);
+        eventHandler.pollEvent(renderer, world);
+        world.getPlayerCharacter().update();
         renderer.update(world);
     }
 }

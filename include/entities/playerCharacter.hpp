@@ -2,11 +2,12 @@
 
 #include <SFML/Graphics.hpp>
 #include "gui/headerBall.hpp"
+#include "gui/thrustBars.hpp"
 
 struct PlayerCharacter : public sf::Drawable {
     // PC Object 
     // TODO: Make something cooler than a circle
-    sf::CircleShape shape;
+    sf::CircleShape body;
 
     // Movement
     sf::Vector2f position;
@@ -18,8 +19,7 @@ struct PlayerCharacter : public sf::Drawable {
     float headerAngle;
 
     // Thrust UI
-    sf::Font font;
-    sf::Text thrustBars[5];
+    ThrustBars thrustBars;
     
     // Functions... needs to be organized better
     PlayerCharacter();

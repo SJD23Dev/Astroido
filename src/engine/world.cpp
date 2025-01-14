@@ -108,7 +108,7 @@ void Quadtree::retrieve(std::vector<sf::Drawable*>& returnObjects, sf::FloatRect
 }
 
 World::World() : objectQuadtree(0, sf::FloatRect(0, 0, DIAMETER, DIAMETER)), pc() {
-    objectQuadtree.insert(&pc, pc.shape.getGlobalBounds());
+    objectQuadtree.insert(&pc, pc.body.getGlobalBounds());
 }
 
 void World::render(sf::RenderWindow& window) {

@@ -41,9 +41,9 @@ void EventHandler::handleKeyRelease(World& world) {
 void EventHandler::handleOrbitAngle(World& world) {
     PlayerCharacter& player = world.getPlayerCharacter();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        player.orbitAngle -= 0.15f;
+        player.headerAngle -= 0.15f;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        player.orbitAngle += 0.15f;
+        player.headerAngle += 0.15f;
     }
 }

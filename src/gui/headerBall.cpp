@@ -1,6 +1,6 @@
-#include "entities/orbitBall.hpp"
+#include "gui/headerBall.hpp"
 
-OrbitBall::OrbitBall() {
+HeaderBall::HeaderBall() {
     currentPosition = sf::Vector2f(0.0f, 0.0f);
     currentOrbitAngle = 0.0f;
     font.loadFromFile("../assets/fonts/Cocogoose-Pro-Light-trial.ttf");
@@ -11,7 +11,7 @@ OrbitBall::OrbitBall() {
     text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 }
 
-void OrbitBall::update(const sf::Vector2f& playerPosition, float targetOrbitAngle) {
+void HeaderBall::update(const sf::Vector2f& playerPosition, float targetOrbitAngle) {
     const float radius = 30.0f;
 
     float smoothingFactor = 0.35f; // 0.0f = no smoothing
@@ -26,6 +26,6 @@ void OrbitBall::update(const sf::Vector2f& playerPosition, float targetOrbitAngl
     text.setRotation(currentOrbitAngle * 180 / M_PI);
 }
 
-void OrbitBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void HeaderBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(text, states);
 }

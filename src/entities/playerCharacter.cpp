@@ -1,6 +1,6 @@
 #include "entities/playerCharacter.hpp"
 
-PlayerCharacter::PlayerCharacter() : orbitAngle(0.0f), velocity(0.0f, 0.0f), thrust(0) {
+PlayerCharacter::PlayerCharacter() : headerAngle(0.0f), velocity(0.0f, 0.0f), thrust(0) {
     shape.setRadius(10.f);
     shape.setFillColor(sf::Color(25, 191, 225));
     shape.setOrigin(shape.getRadius(), shape.getRadius());
@@ -28,7 +28,7 @@ void PlayerCharacter::draw(sf::RenderTarget& target, sf::RenderStates states) co
     for (const auto& bar : thrustBars) {
         target.draw(bar, states);
     }
-    target.draw(orbitBall, states);
+    target.draw(headerBall, states);
 }
 
 void PlayerCharacter::move() {
@@ -53,13 +53,13 @@ void PlayerCharacter::move() {
             break;
     }
 
-    velocity += sf::Vector2f(std::cos(orbitAngle), std::sin(orbitAngle)) * thrustMultiplier * 0.1f;
+    velocity += sf::Vector2f(std::cos(headerAngle), std::sin(headerAngle)) * thrustMultiplier * 0.1f;
     velocity *= 0.99f;
 
     position += velocity;
     shape.setPosition(position);
 
-    orbitBall.update(position, orbitAngle);
+    headerBall.update(position, headerAngle);
 }
 
 void PlayerCharacter::updateThrustBars() {

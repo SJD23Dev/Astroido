@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "orbitBall.hpp"
+#include "gui/headerBall.hpp"
 
 struct PlayerCharacter : public sf::Drawable {
     sf::CircleShape shape;
@@ -9,8 +9,8 @@ struct PlayerCharacter : public sf::Drawable {
     sf::Vector2f velocity;
     int thrust;
     
-    OrbitBall orbitBall;
-    float orbitAngle;
+    HeaderBall headerBall;
+    float headerAngle;
 
     sf::Font font;
     sf::Text thrustBars[5];

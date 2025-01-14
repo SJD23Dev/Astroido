@@ -14,7 +14,7 @@ add_executable(${PROJECT_NAME}
                src/engine/eventHandler.cpp
                src/engine/world.cpp
                src/entities/playerCharacter.cpp
-               src/entities/orbitBall.cpp)
+               src/gui/headerBall.cpp)
 
 target_include_directories(${PROJECT_NAME} 
                            PRIVATE 

@@ -3,13 +3,13 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
-struct OrbitBall : public sf::Drawable{
+struct HeaderBall : public sf::Drawable{
     sf::Text text;
     sf::Font font;
     sf::Vector2f currentPosition;
     float currentOrbitAngle;
 
-    OrbitBall();
+    HeaderBall();
     void update(const sf::Vector2f& playerPosition, float orbitAngle);
 
 private:

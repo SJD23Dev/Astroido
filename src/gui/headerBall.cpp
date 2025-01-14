@@ -3,12 +3,14 @@
 HeaderBall::HeaderBall() {
     currentPosition = sf::Vector2f(0.0f, 0.0f);
     currentHeaderAngle = 0.0f;
-    font.loadFromFile("../assets/fonts/Cocogoose-Pro-Light-trial.ttf");
+    font.loadFromFile("../assets/fonts/Cocogoose-Pro-Bold-trial.ttf");
     text.setFont(font);
     text.setCharacterSize(12);
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(sf::Color(245, 30, 5));
     text.setString(">");
-    text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
+
+    sf::FloatRect textBounds = text.getLocalBounds();
+    text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
 }
 
 void HeaderBall::update(const sf::Vector2f& playerPosition, float angle) {

@@ -15,7 +15,8 @@ add_executable(${PROJECT_NAME}
                src/engine/world.cpp
                src/entities/playerCharacter.cpp
                src/gui/headerBall.cpp
-               src/gui/thrustBars.cpp)
+               src/gui/thrustBars.cpp
+               src/gui/lockBall.cpp)
 
 target_include_directories(${PROJECT_NAME} 
                            PRIVATE 

@@ -1,32 +1,31 @@
 #pragma once
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "gui/headerBall.hpp"
 #include "gui/thrustBars.hpp"
+#include "gui/lockBall.hpp"
 
 struct PlayerCharacter : public sf::Drawable {
-    // PC Object 
-    // TODO: Make something cooler than a circle
+    // Graphics
     sf::CircleShape body;
 
-    // Movement
+    // Variables
     sf::Vector2f position;
     sf::Vector2f velocity;
     int thrust;
-    
-    // Header UI
-    HeaderBall headerBall;
     float headerAngle;
-
-    // Thrust UI
-    ThrustBars thrustBars;
+    float lockAngle;
+    bool isLocked = false;
     
-    // Functions... needs to be organized better
+    // GUI
+    HeaderBall headerBall;
+    ThrustBars thrustBars;
+    LockBall lockBall;
+    
     PlayerCharacter();
     void update();
-
     void move();
-    void updateThrustBars();
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

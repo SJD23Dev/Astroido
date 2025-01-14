@@ -32,6 +32,11 @@ void EventHandler::handleKeyPress(World& world) {
         player.thrust++;
     } else if (event.key.code == sf::Keyboard::S && player.thrust > 0) {
         player.thrust--;
+    } else if (event.key.code == sf::Keyboard::F && !player.isLocked) {
+        player.isLocked = true;
+        player.lockAngle = player.headerAngle;
+    } else if (event.key.code == sf::Keyboard::F && player.isLocked) {
+        player.isLocked = false;
     }
 }
 

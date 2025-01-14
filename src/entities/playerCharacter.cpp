@@ -22,12 +22,18 @@ void PlayerCharacter::update() {
 
 void PlayerCharacter::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(body, states);
+
     target.draw(thrustBars, states);
     target.draw(headerBall, states);
+
+    if (isLocked) {
+        target.draw(lockBall, states);
+    }
 }
 
 void PlayerCharacter::move() {
     float thrustMultiplier = 0.0f;
+
     switch (thrust) {
         case 1:
             thrustMultiplier = 0.15f; // Stealth
@@ -46,19 +52,34 @@ void PlayerCharacter::move() {
             break;
         default:
             break;
+        }
+
+    if (!isLocked) {
+        /*
+        // Velosity is a vector of (x, y), where 'x' is the cos of the header angle,
+        // and 'y' is the sin of the header angle. Velocity is then multiplied by the
+        // current thrust mulitplier and a constant value of 0.1f.
+        */
+
+        velocity += sf::Vector2f(std::cos(headerAngle), std::sin(headerAngle)) * thrustMultiplier * 0.1f;
+        velocity *= 0.99f; // Create a drag effect (lower = more drag)
+
+        position += velocity;
+
+        body.setPosition(position);
+        headerBall.update(position, headerAngle);
+        lockBall.update(position, headerAngle);
+
+    } else {
+        velocity += sf::Vector2f(std::cos(lockAngle), std::sin(lockAngle)) * thrustMultiplier * 0.1f;
+        velocity *= 0.99f;
+
+        position += velocity;
+
+        body.setPosition(position);
+        headerBall.update(position, headerAngle);
+        lockBall.update(position, lockAngle);
     }
 
-    /*
-    // Velosity is a vector of (x, y), where 'x' is the cos of the header angle,
-    // and 'y' is the sin of the header angle. Velocity is then multiplied by the
-    // current thrust mulitplier and a constant value of 0.1f.
-    */
 
-    velocity += sf::Vector2f(std::cos(headerAngle), std::sin(headerAngle)) * thrustMultiplier * 0.1f;
-    velocity *= 0.99f; // Create a drag effect (lower = more drag)
-
-    position += velocity;
-
-    body.setPosition(position); // Update player position
-    headerBall.update(position, headerAngle); // Update headerBall position
 }

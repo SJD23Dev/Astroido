@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include "entities/playerCharacter.hpp"
 
+// Handles storing all the entities in the world, storing:
+// 1) the object itself 2) the object's coordinate position
 struct Quadtree {
     static const int MAX_OBJECTS = 1000;
     static const int MAX_LEVELS = 5;
@@ -27,7 +29,7 @@ struct World {
     int DIAMETER = 1000;
     int RADIUS = DIAMETER / 2;
 
-    Quadtree coordinateQuadtree;
+    Quadtree objectQuadtree;
     PlayerCharacter pc;
 
     World();

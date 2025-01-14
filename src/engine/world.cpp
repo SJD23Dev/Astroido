@@ -107,13 +107,13 @@ void Quadtree::retrieve(std::vector<sf::Drawable*>& returnObjects, sf::FloatRect
     returnObjects.insert(returnObjects.end(), objects.begin(), objects.end());
 }
 
-World::World() : coordinateQuadtree(0, sf::FloatRect(0, 0, DIAMETER, DIAMETER)), pc() {
-    coordinateQuadtree.insert(&pc, pc.shape.getGlobalBounds());
+World::World() : objectQuadtree(0, sf::FloatRect(0, 0, DIAMETER, DIAMETER)), pc() {
+    objectQuadtree.insert(&pc, pc.shape.getGlobalBounds());
 }
 
 void World::render(sf::RenderWindow& window) {
     std::vector<sf::Drawable*> returnObjects;
-    coordinateQuadtree.retrieve(returnObjects, sf::FloatRect(0, 0, DIAMETER, DIAMETER));
+    objectQuadtree.retrieve(returnObjects, sf::FloatRect(0, 0, DIAMETER, DIAMETER));
 
     for (auto& object: returnObjects) {
         window.draw(*object);
@@ -121,7 +121,7 @@ void World::render(sf::RenderWindow& window) {
 }
 
 void World::addObject(sf::Drawable* object, sf::FloatRect rect) {
-    coordinateQuadtree.insert(object, rect);
+    objectQuadtree.insert(object, rect);
 }
 
 PlayerCharacter& World::getPlayerCharacter() {

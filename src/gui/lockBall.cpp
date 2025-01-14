@@ -16,8 +16,7 @@ LockBall::LockBall() {
 void LockBall::update(const sf::Vector2f& playerPosition, float angle) {
     const float radius = 20.0f;
 
-    float smoothingFactor = 0.35f;
-    currentLockAngle += (angle - currentLockAngle) * smoothingFactor;
+    currentLockAngle += (angle - currentLockAngle);
 
     currentPosition = sf::Vector2f(
         playerPosition.x + radius * std::cos(currentLockAngle),

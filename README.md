@@ -16,7 +16,7 @@ Welcome to my repository for Astroido, a small space-themed game develeoped in C
 
 ## Controls
 
-| Key | Action                |
+| Key | Action/Event                |
 |-----|-----------------------|
 | **w** | Increase thrust       |
 | **s** | Decrease thrust       |

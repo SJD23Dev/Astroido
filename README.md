@@ -20,8 +20,8 @@ Welcome to my repository for Astroido, a small space-themed game develeoped in C
 |-----|-----------------------|
 | **w** | Increase thrust |
 | **s** | Decrease thrust |
-| **d** | Change heading clockwise |
-| **a** | Change heading counter-clockwise |
+| **d** | Adjust heading clockwise |
+| **a** | Adjust heading counter-clockwise |
 | **f** | Lock heading |
 
 ## Contact me

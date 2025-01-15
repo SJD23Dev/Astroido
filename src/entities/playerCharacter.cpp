@@ -76,6 +76,7 @@ void PlayerCharacter::move() {
         // and 'y' is the sin of the lock angle. Velocity is then multiplied by the
         // current thrust mulitplier and a constant value of 0.1f.
         */
+       
         velocity += sf::Vector2f(std::cos(lockAngle), std::sin(lockAngle)) * thrustMultiplier * 0.1f;
         velocity *= 0.99f;
 

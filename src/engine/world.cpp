@@ -12,6 +12,10 @@ void World::render(sf::RenderWindow& window) {
     }
 }
 
+void World::update() {
+    pc.update();
+}
+
 World::Bucket World::getBucket(sf::Vector2f position) {
     int x = static_cast<int>(position.x) / BUCKET_SIZE;
     int y = static_cast<int>(position.y) / BUCKET_SIZE;

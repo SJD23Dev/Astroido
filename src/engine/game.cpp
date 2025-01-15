@@ -7,9 +7,9 @@ Game::Game() : renderer(),
 
 void Game::run() {
     while (renderer.isOpen()) {
-        eventHandler.pollEvent(renderer, world);
-        eventHandler.handleOrbitAngle(world);
-        world.getPlayerCharacter().update();
-        renderer.update(world);
+        eventHandler.pollEvent(renderer, world); // Poll events
+        eventHandler.handleHeadingAngle(world); // Handle heading angle seperately
+        world.update(); // Update/simulate the world
+        renderer.update(world); // Draw the world to the screen
     }
 }

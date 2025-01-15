@@ -31,6 +31,7 @@ struct World {
 
     World();
     void render(sf::RenderWindow& window);
+    void update();
 
     // Spatial Hashing functions
     Bucket getBucket(sf::Vector2f position);

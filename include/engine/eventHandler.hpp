@@ -11,5 +11,5 @@ struct EventHandler {
     void handleEvent(Renderer& renderer, World& world);
     void handleKeyPress(World& world);
     void handleKeyRelease(World& world);
-    void handleOrbitAngle(World& world);
+    void handleHeadingAngle(World& world);
 };

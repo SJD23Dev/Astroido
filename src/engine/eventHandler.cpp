@@ -37,13 +37,17 @@ void EventHandler::handleKeyPress(World& world) {
         player.lockAngle = player.headerAngle;
     } else if (event.key.code == sf::Keyboard::F && player.isLocked) {
         player.isLocked = false;
+    } else if (event.key.code == sf::Keyboard::A) {
+        player.headerAngle -= 0.15f;
+    } else if (event.key.code == sf::Keyboard::D) {
+        player.headerAngle += 0.15f;
     }
 }
 
 void EventHandler::handleKeyRelease(World& world) {
 }
 
-void EventHandler::handleOrbitAngle(World& world) {
+void EventHandler::handleHeadingAngle(World& world) {
     PlayerCharacter& player = world.getPlayerCharacter();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         player.headerAngle -= 0.15f;

@@ -85,6 +85,4 @@ void PlayerCharacter::move() {
         headerBall.update(position, headerAngle);
         lockBall.update(position, lockAngle);
     }
-
-
 }

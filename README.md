@@ -16,13 +16,13 @@ Welcome to my repository for Astroido, a small space-themed game develeoped in C
 
 ## Controls
 
-| Key | Action/Event          |
+| Key | Action/Event |
 |-----|-----------------------|
-| **w** | Increase thrust       |
-| **s** | Decrease thrust       |
-| **d** | Change heading rightward |
-| **a** | Change heading leftward  |
-| **f** | Lock heading          |
+| **w** | Increase thrust |
+| **s** | Decrease thrust |
+| **d** | Change heading clockwise |
+| **a** | Change heading counter-clockwise |
+| **f** | Lock heading |
 
 ## Contact me
 

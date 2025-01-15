@@ -18,8 +18,6 @@ struct PairHash {
 
 struct World {
     // Constants
-    int HEIGHT = 1280;
-    int WIDTH = 720;
     int BUCKET_SIZE = 50; // Size of each bucket in the spatial hash
 
     // Spatial Hashing

@@ -14,6 +14,14 @@
 
 Welcome to my repository for Astroido, a small space-themed game develeoped in C++ using the SFML 2.5 library. The development environment mostly consists of Visual Studio Code on Ubuntu. This project (along with this README) is a work-in-progress, with more information to be added in the future!
 
+# Controls
+
+**w**: Increase thrust
+**s**: Decrease thrust
+**d**: Change heading rightward
+**a**: Change heading leftward
+**f**: Lock heading
+
 ## Contact me
 
 Email: [SJD23Dev@proton.me](mailto:SJD23Dev@proton.me)

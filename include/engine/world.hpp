@@ -1,41 +1,42 @@
 #pragma once
 
-#include <algorithm>
+#include <unordered_map>
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include "entities/playerCharacter.hpp"
 
-// Handles storing all the entities in the world, storing:
-// 1) the object itself 2) the object's coordinate position
-struct Quadtree {
-    static const int MAX_OBJECTS = 1000;
-    static const int MAX_LEVELS = 5;
-
-    int level;
-    std::vector<sf::Drawable*> objects;
-    sf::FloatRect bounds;
-    std::vector<std::unique_ptr<Quadtree>> nodes;
-
-    Quadtree(int pLevel, sf::FloatRect pBounds);
-    void clear();
-    void split();
-    int getIndex(sf::FloatRect pRect);
-    void insert(sf::Drawable* object, sf::FloatRect rect);
-    void retrieve(std::vector<sf::Drawable*>& returnObjects, sf::FloatRect rect);
+// Hash function for std::pair<int, int>
+struct PairHash {
+    template <typename T1, typename T2> 
+    std::size_t operator()(const std::pair<T1, T2>& pair) const {
+        auto hash1 = std::hash<T1>{}(pair.first);
+        auto hash2 = std::hash<T2>{}(pair.second);
+        return hash1 ^ hash2;
+    }
 };
 
 struct World {
-    int DIAMETER = 1000;
-    int RADIUS = DIAMETER / 2;
+    // Constants
+    int HEIGHT = 100;
+    int WIDTH = 100;
+    int BUCKET_SIZE = 50; // Size of each bucket in the spatial hash
 
-    Quadtree objectQuadtree;
+    // Spatial Hashing
+    using Bucket = std::pair<int, int>;
+    std::unordered_map<Bucket, std::vector<sf::Drawable*>, PairHash> spatialHash;
+
+    // Entities
     PlayerCharacter pc;
 
     World();
     void render(sf::RenderWindow& window);
+
+    // Spatial Hashing functions
+    Bucket getBucket(sf::Vector2f position);
     void addObject(sf::Drawable* object, sf::FloatRect rect);
-    //void removeObject(sf::Drawable* object, sf::FloatRect rect);
+    void removeObject(sf::Drawable* object, sf::FloatRect rect);
+    void checkCollisions();
     
     PlayerCharacter& getPlayerCharacter();
 };

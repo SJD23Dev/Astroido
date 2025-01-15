@@ -1,127 +1,43 @@
 #include "engine/world.hpp"
 
-Quadtree::Quadtree(int pLevel, sf::FloatRect pBounds) : level(pLevel), bounds(pBounds) {
-    nodes.reserve(4);
-}
-
-void Quadtree::clear() {
-    objects.clear();
-    for (auto& node: nodes) {
-        if (node) {
-            node->clear();
-            node.reset();
-        }
-    }
-    nodes.clear();
-}
-
-void Quadtree::split() {
-    float subWidth = bounds.width / 2.0f;
-    float subHeight = bounds.height / 2.0f;
-    float x = bounds.left;
-    float y = bounds.top;
-
-    nodes.push_back(std::make_unique<Quadtree>( 
-                    level + 1,
-                    sf::FloatRect(x + subWidth, y, subWidth, subHeight)
-    ));
-
-    nodes.push_back(std::make_unique<Quadtree>(
-                    level + 1, 
-                    sf::FloatRect(x, y, subWidth, subHeight)
-    ));
-
-    nodes.push_back(std::make_unique<Quadtree>(
-                    level + 1, 
-                    sf::FloatRect(x, y + subHeight, subWidth, subHeight)
-    ));
-
-    nodes.push_back(std::make_unique<Quadtree>(
-                    level + 1, 
-                    sf::FloatRect(x + subWidth, y + subHeight, subWidth, subHeight)
-    ));
-}
-
-int Quadtree::getIndex(sf::FloatRect rect) {
-    int index = -1;
-
-    float verticalMidpoint = bounds.left + (bounds.width / 2.0f);
-    float horizontalMidpoint = bounds.top + (bounds.height / 2.0f);
-
-    bool topQuadrant = (rect.top < horizontalMidpoint && rect.top + rect.height < horizontalMidpoint);
-    bool bottomQuadrant = (rect.top > horizontalMidpoint);
-
-    if (rect.left < verticalMidpoint && rect.left + rect.width < verticalMidpoint) {
-        if (topQuadrant) {
-            index = 1;
-        } else if (bottomQuadrant) {
-            index = 2;
-        }
-    } else if (rect.left > verticalMidpoint) {
-        if (topQuadrant) {
-            index = 0;
-        } else if (bottomQuadrant) {
-            index = 3;
-        }
-    }
-
-    return index;
-}
-
-void Quadtree::insert(sf::Drawable* object, sf::FloatRect rect) {
-    if (!nodes.empty()) {
-        int index = getIndex(rect);
-
-        if (index != -1) {
-            nodes[index]->insert(object, rect);
-            return;
-        }
-    }
-
-    objects.push_back(object);
-
-    if (objects.size() > MAX_OBJECTS && level < MAX_LEVELS) {
-        if (nodes.empty()) {
-            split();
-        }
-
-        auto it = objects.begin();
-        while (it != objects.end()) {
-            int index = getIndex(rect);
-            if (index != -1) {
-                nodes[index]->insert(*it, rect);
-                it = objects.erase(it);
-            } else {
-                ++it;
-            }
-        }
-    }
-}
-
-void Quadtree::retrieve(std::vector<sf::Drawable*>& returnObjects, sf::FloatRect rect) {
-    int index = getIndex(rect);
-    if (index != -1 && !nodes.empty()) {
-        nodes[index]->retrieve(returnObjects, rect);
-    }
-
-    returnObjects.insert(returnObjects.end(), objects.begin(), objects.end());
-}
-
-World::World() : objectQuadtree(0, sf::FloatRect(0, 0, DIAMETER, DIAMETER)), pc() {
-    objectQuadtree.insert(&pc, pc.body.getGlobalBounds());
+World::World() : spatialHash(), pc() {
+    addObject(&pc, pc.body.getGlobalBounds());
 }
 
 void World::render(sf::RenderWindow& window) {
-    std::vector<sf::Drawable*> returnObjects;
-    objectQuadtree.retrieve(returnObjects, sf::FloatRect(0, 0, DIAMETER, DIAMETER));
-
-    for (auto& object: returnObjects) {
-        window.draw(*object);
+    for (auto& pair : spatialHash) {
+        for (auto& object : pair.second) {
+            window.draw(*object);
+        }
     }
 }
 
+World::Bucket World::getBucket(sf::Vector2f position) {
+    int x = static_cast<int>(position.x) / BUCKET_SIZE;
+    int y = static_cast<int>(position.y) / BUCKET_SIZE;
+    return std::make_pair(x, y);
+}
+
 void World::addObject(sf::Drawable* object, sf::FloatRect rect) {
-    objectQuadtree.insert(object, rect);
+    Bucket bucket = getBucket(sf::Vector2f(rect.left, rect.top));
+    spatialHash[bucket].push_back(object);
+}
+
+void World::removeObject(sf::Drawable* object, sf::FloatRect rect) {
+    Bucket bucket = getBucket(sf::Vector2f(rect.left, rect.top));
+    auto& objects = spatialHash[bucket];
+    objects.erase(std::remove(objects.begin(), objects.end(), object), objects.end());
+}
+
+void World::checkCollisions() {
+    for (auto& pair : spatialHash) {
+        auto& objects = pair.second;
+        for (size_t i = 0; i < objects.size(); ++i) {
+            for (size_t j = i + 1; j < objects.size(); ++j) {
+                // TODO: Implement collision detection
+            }
+        }
+    }
 }
 
 PlayerCharacter& World::getPlayerCharacter() {

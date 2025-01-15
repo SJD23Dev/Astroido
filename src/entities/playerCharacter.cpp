@@ -86,3 +86,10 @@ void PlayerCharacter::move() {
         lockBall.update(position, lockAngle);
     }
 }
+
+void PlayerCharacter::setLocation(sf::Vector2f position) {
+    this->position = position;
+    body.setPosition(position);
+    headerBall.update(position, headerAngle);
+    lockBall.update(position, lockAngle);
+}

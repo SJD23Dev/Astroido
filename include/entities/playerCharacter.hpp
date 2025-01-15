@@ -26,6 +26,8 @@ struct PlayerCharacter : public sf::Drawable {
     PlayerCharacter();
     void update();
     void move();
+    void setLocation(sf::Vector2f position);
+
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

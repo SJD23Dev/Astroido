@@ -18,8 +18,8 @@ struct PairHash {
 
 struct World {
     // Constants
-    int HEIGHT = 100;
-    int WIDTH = 100;
+    int HEIGHT = 1280;
+    int WIDTH = 720;
     int BUCKET_SIZE = 50; // Size of each bucket in the spatial hash
 
     // Spatial Hashing
@@ -32,6 +32,8 @@ struct World {
     World();
     void render(sf::RenderWindow& window);
     void update();
+
+    sf::Vector2f wrapPosition(sf::Vector2f position);
 
     // Spatial Hashing functions
     Bucket getBucket(sf::Vector2f position);

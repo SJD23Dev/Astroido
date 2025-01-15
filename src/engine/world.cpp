@@ -13,7 +13,31 @@ void World::render(sf::RenderWindow& window) {
 }
 
 void World::update() {
+    sf::Vector2f preActionPos = pc.body.getPosition();
     pc.update();
+    sf::Vector2f postActionPos = wrapPosition(pc.body.getPosition());
+
+    if (preActionPos != postActionPos) {
+        pc.setLocation(postActionPos);
+    }
+    
+}
+
+sf::Vector2f World::wrapPosition(sf::Vector2f position) {
+    float worldWidth = 1280;
+    float worldHeight = 720;
+    
+    sf::Vector2f wrapped = position;
+    
+    // Wrap horizontally
+    if (position.x < 0) wrapped.x = worldWidth + fmod(position.x, worldWidth);
+    else wrapped.x = fmod(position.x, worldWidth);
+    
+    // Wrap vertically
+    if (position.y < 0) wrapped.y = worldHeight + fmod(position.y, worldHeight);
+    else wrapped.y = fmod(position.y, worldHeight);
+    
+    return wrapped;
 }
 
 World::Bucket World::getBucket(sf::Vector2f position) {
